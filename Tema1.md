@@ -1,6 +1,6 @@
-## Tema 1
+# Tema 1
 
-### Instalacion y configuracion de maquina virtual.
+## Instalacion y configuracion de maquina virtual.
 
 conectar  
 ```
