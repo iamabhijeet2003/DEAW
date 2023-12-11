@@ -129,3 +129,44 @@ ahora podemos compribar acceder a la pagina y comprobar los logs posteriormente 
 #### FTP 
 en pdf de los apuntes
 
+### Autenticación en Nginx
+Vamos a utilizar openssl y compruebamos si esta instalada:
+```
+dpkg -l | grep openssl
+```
+Ahora creamos un archivo oculto .htpasswd en `/etc/nginx`
+```
+sudo sh -c  "echo -n 'abhijeet:' >> /etc/nginx/.htpasswd"
+```
+Crea dos usuarios, uno con tu nombre y otro con tu apellido.
+Comprueba que el usuario y la contraseña aparezcan cifrados en el fichero:
+```
+cat /etc/nginx/.htpasswd
+```
+
+#### Configurando el servidor Nginx para usar autenticación básica
+editamos el archivo de server block: 
+```
+sudo nano /etc/nginx/sites-available/nom_web
+```
+y editamos dentro de `location / {...}`:
+```
+server {
+    listen 80;
+    listen [::]:80;
+
+    root /var/www/abhijeet/html/perfect-learn;
+    index index.html index.htm index.nginx-debian.html;
+    server_name tasca;
+    location / {
+      auth_basic "Àrea restringida";
+      auth_basic_user_file /etc/nginx/.htpasswd;
+      try_files $uri $uri/ =404;
+    }
+}
+```
+y reiniciamos el servidor.
+```
+sudo systemctl restart nginx
+```
+
