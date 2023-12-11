@@ -170,3 +170,35 @@ y reiniciamos el servidor.
 sudo systemctl restart nginx
 ```
 
+#### Combinacion de la autenticación basica con restricciones de IP
+dentro de server block añadiremos:
+
+Restricciones y accesso a IP's:
+```
+server {
+    ...
+    location / {
+      deny 198.192.1.10;
+      allow 192.168.1.1/24,
+      allow 127.0.0.1;
+      deny all;
+    }
+}
+```
+Combinar IP y la autenticación HTTP:
+```
+server {
+    ...
+    location / {
+      satisfy all;
+
+      deny 198.192.1.10;
+      allow 192.168.1.1/24,
+      allow 127.0.0.1;
+      deny all;
+
+      auth_basic              "Administrator's area"
+      auth_basic_user_file    conf/htpasswd;
+    }
+}
+```
