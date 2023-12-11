@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pratica 2.1 </title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  
+  <h2>Instalación y Configuración de servidor web Nginx</h2>
+
+  <h4>Instalación servidor</h4>
+  <p>Instalamos nginx:</p>
+  <pre><code>sudo apt update
+  sudo apt install nginx
+  </code></pre>
+
+  <p>Comprobamos si se ha instalado correctamente:</p>
+  <pre><code>sudo systemctl status nginx
+  </code></pre>
+
+  <p>Cremaos una carpeta del sitio web / dominio:</p>
+  <pre><code>sudo mkdir -p /var/www/nombre_de_la_web/html
+  </code></pre>
+
+  <p>Dentro de la carpeta creada anteriormente clonamos el repositorio:</p>
+  <pre><code>https://github.com/cloudacademy/static-website-example
+  </code></pre>
+
+  <p>Asignamos como propietario a www-data:</p>
+  <pre><code>sudo chown -R www-data:www-data /var/www/nombre_de_la_web/html
+  </code></pre>
+
+  <p>Y le damos los permisos adecuados:</p>
+  <pre><code>sudo chmod -R 755 /var/www/nombre_de_la_web
+  </code></pre>
+
+  <p>Podemos comprobar si está funcionando el servidor entrando en:</p>
+  <pre><code>http://IP-maquina-virtual
+  </code></pre>
+
+  <p>Y debería aparecer la página <strong>default</strong> de <strong>nginx</strong>.</p>
+
+  <h4>Configuración del servidor web</h4>
+  <p>Crearemos un nuevo archivo en <code>/etc/nginx/sites-available/nombre_pagina_web</code>:</p>
+  <pre><code>sudo nano /etc/nginx/sites-available/nombre_pagina_web
+  </code></pre>
+
+  <p>Y contendrá:</p>
+  <pre><code>server {
+      listen 80;
+      listen [::]:80;
+      root /ruta/absoluta/archivo/index; #como /var/www/ejemplo2/html/2016_soft_landing
+      index index.html index.htm index.nginx-debian.html;
+      server_name nombre_web;
+      location / {
+        try_files $uri $uri/ =404;
+      }
+  }
+  </code></pre>
+
+  <p>Y ahora creamos un enlace simbólico:</p>
+  <pre><code>sudo ln -s /etc/nginx/sites-available/nombre-web /etc/nginx/sites-enabled/
+  </code></pre>
+
+  <p>Y reiniciamos el servidor:</p>
+  <pre><code>sudo systemctl restart nginx
+  </code></pre>
+
+  <h4>Comprobaciones</h4>
+  <p>Tenemos que introducir el nombre y la IP de la página web en la máquina anfitriona/real en <code>/etc/hosts</code> y añadir la línea <code>ip_maquina_debian nombre_web</code>.</p>
+
+  <p>Ahora podemos comprobar acceder a la página y comprobar los logs posteriormente en:</p>
+  <pre><code>/var/log/nginx/access.log
+  /var/log/nginx/error.log
+  </code></pre>
+
+  <h4>FTP</h4>
+  <p>En el PDF de los apuntes.</p>
+</body>
+</html>

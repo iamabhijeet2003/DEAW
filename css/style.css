@@ -1,0 +1,20 @@
+body{
+    color: #000;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  a:hover {
+    color: #0056b3;
+  }
+  
+  pre {
+    background-color: #cfcdcd;
+    padding: 10px;
+    overflow-x: auto;
+    border-radius: 5px;
+  }
+  
