@@ -36,3 +36,19 @@ timeout 2 sudo id && echo Access granted || echo Access denied
 ```
 
 si hay permisos correctos devolvera: `uid=0(root) gid=0(root) grupos=0(root) Access granted`
+
+### Configuración
+Creamos la llave de accesso:
+```
+ssh-keygen -b 4096
+```
+Creamos la copia en la MV:
+```
+ssh-copy-id abhijeet@IP-maquina
+```
+para evitar problemas damos permisos en debian:
+```
+chmod 700 .ssh/
+chmod 600 .shh/authorized_keys
+```
+
