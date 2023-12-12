@@ -1,7 +1,7 @@
 # DAW (Despliegue de Aplicaciones Web)
 
 ---
-## [Tema 1](Tema1.md)
+## [Tema 1](Temario/Tema1.html)
 ---
-## [Tema 2](Tema2.md)
+## [Tema 2](Temario/Tema2.html)
 ---
