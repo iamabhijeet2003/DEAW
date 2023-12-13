@@ -74,3 +74,7 @@ y tambien en.
 ```
 http://localhost:8080/host-manager/html
 ```
+
+## Despliegue manual desde GUI de administrador de Tomcat
+
+Descargamos el archivo WAR : 
