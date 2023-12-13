@@ -75,7 +75,7 @@ y tambien en.
 http://localhost:8080/host-manager/html
 ```
 
-## Despliegue manual desde GUI de administrador de Tomcat
+### Despliegue manual desde GUI de administrador de Tomcat
 
 Descargamos el archivo WAR : (aqui)[https://github.com/iamabhijeet2003/DEAW/blob/main/Archivos/EjemploPruebaCarga.war]
 
@@ -85,3 +85,69 @@ Buscamos la sesion de despliegue manual
 
 Subimos el archivo y se desplegara.
 
+---
+# Instalacion de maven
+
+Instalamos maven con APT:
+```
+sudo apt update
+sudo apt install maven
+```
+y compruebamos la version:
+```
+mvn --v
+```
+Ahora tenemos que añadir el rol de manager-script para permitir a que maven se autentique contra tomcat
+
+modificamos :
+```
+/etc/tomcat9/tomcat-users.xml
+```
+y le añadimos:
+```
+<role rolename="admin"/>
+<role rolename="admin-gui"/>
+<role rolename="manager"/>
+<role rolename="manager-gui"/>
+
+<user username="debian11abhiexam" password="abhijeet" roles="admin,admin-gui,manager,manager-gui"/>
+<user username="abhijeet-deploy" password="abhijeet" roles="manager-scripts"/>
+```
+editamos el archivo : 
+```
+/etc/maven/settings.xml
+```
+y añadimos.
+```
+<servers>
+    <server>
+        <id>Tomcat.P.3.1</id>
+        <username>abhijeet-deploy</username>
+        <password>abhijeet</password>
+    </server>
+</servers>
+```
+
+ahora creamos la aplicacion de prueba:
+```
+mvn archetype:generate -DgroupId=guillermo -DartifactId=war-deploy -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+```
+
+ahora modificamos de nuevo el pom.xml:
+```
+<build>
+    <finalName>war-deploy</finalName>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+                <url>http://localhost:8080/manager/text</url>
+                <server>Tomcat.P.3.1</server>
+                <path>/myapp</path>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```

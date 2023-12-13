@@ -125,6 +125,78 @@ sudo apt install tomcat9-admin
 
 <p>Subimos el archivo y se desplegará.</p>
 
+<hr>
+<h1>Instalacion de maven</h1>
+
+<p>Instalamos maven con APT:</p>
+<pre><code>
+sudo apt update
+sudo apt install maven
+</code></pre>
+
+<p>y comprobamos la versión:</p>
+<pre><code>
+mvn --v
+</code></pre>
+
+<p>Ahora tenemos que añadir el rol de manager-script para permitir a que maven se autentique contra tomcat</p>
+
+<p>Modificamos :</p>
+<pre><code>
+/etc/tomcat9/tomcat-users.xml
+</code></pre>
+
+<p>y le añadimos:</p>
+<pre><code>
+&lt;role rolename="admin"/&gt;
+&lt;role rolename="admin-gui"/&gt;
+&lt;role rolename="manager"/&gt;
+&lt;role rolename="manager-gui"/&gt;
+
+&lt;user username="debian11abhiexam" password="abhijeet" roles="admin,admin-gui,manager,manager-gui"/&gt;
+&lt;user username="abhijeet-deploy" password="abhijeet" roles="manager-scripts"/&gt;
+</code></pre>
+
+<p>Editamos el archivo :</p>
+<pre><code>
+/etc/maven/settings.xml
+</code></pre>
+
+<p>y añadimos:</p>
+<pre><code>
+&lt;servers&gt;
+    &lt;server&gt;
+        &lt;id&gt;Tomcat.P.3.1&lt;/id&gt;
+        &lt;username&gt;abhijeet-deploy&lt;/username&gt;
+        &lt;password&gt;abhijeet&lt;/password&gt;
+    &lt;/server&gt;
+&lt;/servers&gt;
+</code></pre>
+
+<p>Ahora creamos la aplicación de prueba:</p>
+<pre><code>
+mvn archetype:generate -DgroupId=guillermo -DartifactId=war-deploy -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+</code></pre>
+
+<p>Ahora modificamos de nuevo el pom.xml:</p>
+<pre><code>
+&lt;build&gt;
+    &lt;finalName&gt;war-deploy&lt;/finalName&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
+            &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;2.2&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;url&gt;http://localhost:8080/manager/text&lt;/url&gt;
+                &lt;server&gt;Tomcat.P.3.1&lt;/server&gt;
+                &lt;path&gt;/myapp&lt;/path&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+
 
 
 
