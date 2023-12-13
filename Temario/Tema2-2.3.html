@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tema 1</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>2.3 Proxy Inverso</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     
 </head>
-<body class="container-fluid">
+<body>
     <nav class="mt-1">
         <ul class="nav justify-content-center">
             <li class="nav-item">
@@ -23,56 +22,6 @@
             </li>   
         </ul>
     </nav>
-    <h1>Tema 1</h1>
-
-    <h2>Instalacion y configuracion de maquina virtual.</h2>
-    <p>Instalamos debian 12 desde la pagina oficial: 
-        <a href="https://www.debian.org/CD/netinst/index.es.html">Aqui</a>
-    </p>
-
-    <p>Conectar</p>
-    <pre><code>ssh -l abhijeet ip-maquina
-    </code></pre>
-
-    <p>Canviant del nostre usuari a l’usuari root:</p>
-    <pre><code>su root
-    </code></pre>
-
-    <p>Entramos en visudo:</p>
-    <pre><code>/usr/sbin/visudo
-    </code></pre>
-
-    <p>y editamos el archivo debajo de</p>
-    <pre><code># User privilegdes
-    root ALL=(ALL:ALL) ALL
-    abhijeet ALL=(ALL:ALL) ALL
-    </code></pre>
-
-    <p>Comprobamos si somos root:</p>
-    <pre><code>sudo -v
-    </code></pre>
-    <p>O de otra forma:</p>
-    <pre><code>timeout 2 sudo id &amp;&amp; echo Access granted || echo Access denied
-    </code></pre>
-
-    <p>Si hay permisos correctos devolverá: <code>uid=0(root) gid=0(root) grupos=0(root) Access granted</code></p>
-
-    <h3>Configuración</h3>
-
-    <p> Creamos la llave de acceso:</p>
-    <pre><code>ssh-keygen -b 4096
-    </code></pre>
-
-    <p>Creamos la copia en la MV:</p>
-    <pre><code>ssh-copy-id abhijeet@IP-maquina
-    </code></pre>
-
-    <p>Para evitar problemas damos permisos en debian:</p>
-    <pre><code>chmod 700 .ssh/
-    chmod 600 .shh/authorized_keys
-    </code></pre>
-
-    <hr>
 
     <!-- Footer -->
     <footer class="bg-primary text-white">
