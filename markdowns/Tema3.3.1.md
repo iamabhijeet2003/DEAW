@@ -77,4 +77,11 @@ http://localhost:8080/host-manager/html
 
 ## Despliegue manual desde GUI de administrador de Tomcat
 
-Descargamos el archivo WAR : 
+Descargamos el archivo WAR : (aqui)[https://github.com/iamabhijeet2003/DEAW/blob/main/Archivos/EjemploPruebaCarga.war]
+
+Hacemos el login
+
+Buscamos la sesion de despliegue manual
+
+Subimos el archivo y se desplegara.
+
