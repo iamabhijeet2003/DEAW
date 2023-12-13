@@ -28,8 +28,95 @@
     </ul>
 </nav>
   
+<h1>3.1 Instalación de Tomcat y Maven para el despliegue de aplicaciones java</h1>
 
-    
+<blockquote>
+  <p>Para esta practica usaremos la version 9 de tomcat</p>
+</blockquote>
+
+<h2>Instalación Tomcat</h2>
+
+<p>Primero que todo instalamos ufw para cambiar el puerto a Tomcat</p>
+<pre><code>
+sudo apt update
+sudo apt install ufw
+</code></pre>
+
+<p>Ahora queremos que el puerto por defecto del Tomcat sea 8080.</p>
+<pre><code>
+sudo ufw allow 8080
+</code></pre>
+
+<p>Ahora actualizamos los paquetes de nuevo:</p>
+<pre><code>
+sudo apt update
+</code></pre>
+
+<p>Instalamos Java:</p>
+<pre><code>
+sudo apt install openjdk-11-jdk -y
+</code></pre>
+
+<h2>Instalación Apache Tomcat</h2>
+
+<p>Instalamos apache tomcat:</p>
+<pre><code>
+sudo apt install tomcat9 -y
+</code></pre>
+
+<p>Añadimos el grupo tomcat9:</p>
+<pre><code>
+sudo groupadd tomcat9
+</code></pre>
+
+<p>Añadimos el grupo:</p>
+<pre><code>
+sudo useradd -s /bin/false -g tomcat9 -d /etc/tomcat9 tomcat9
+</code></pre>
+
+<p>Tomcat está instalado, iniciamos y comprobamos:</p>
+<pre><code>
+sudo systemctl start tomcat9
+sudo systemctl status tomcat9
+</code></pre>
+
+<p>Ahora definimos el usuario:</p>
+<pre><code>
+sudo nano /etc/tomcat9/tomcat-users.xml
+</code></pre>
+
+<p>Y ponemos:</p>
+<pre><code>
+&lt;role rolename="admin"/&gt;
+&lt;role rolename="admin-gui"/&gt;
+&lt;role rolename="manager"/&gt;
+&lt;role rolename="manager-gui"/&gt;
+
+&lt;user username="debian11abhiexam" password="abhijeet" roles="admin,admin-gui,manager,manager-gui"/&gt;
+</code></pre>
+
+<p>Ahora comprobamos el acceso a Tomcat:</p>
+<pre><code>
+<a href="http://localhost:8080">http://localhost:8080</a>
+</code></pre>
+
+<p>Ahora instalamos el tomcat admin:</p>
+<pre><code>
+sudo apt install tomcat9-admin
+</code></pre>
+
+<p>Y ahora entramos en:</p>
+<pre><code>
+<a href="http://localhost:8080/manager/html">http://localhost:8080/manager/html</a>
+</code></pre>
+
+<p>Y también en:</p>
+<pre><code>
+<a href="http://localhost:8080/host-manager/html">http://localhost:8080/host-manager/html</a>
+</code></pre>
+
+
+
 
   <!-- Footer -->
   <footer class="bg-primary text-white">
