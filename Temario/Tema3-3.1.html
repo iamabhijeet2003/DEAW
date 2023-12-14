@@ -179,8 +179,8 @@ mvn archetype:generate -DgroupId=guillermo -DartifactId=war-deploy -DarchetypeAr
 </code></pre>
 
 <p>Ahora modificamos de nuevo el pom.xml:</p>
-<pre><code>
-&lt;build&gt;
+
+<pre><code>&lt;build&gt;
     &lt;finalName&gt;war-deploy&lt;/finalName&gt;
     &lt;plugins&gt;
         &lt;plugin&gt;
@@ -197,10 +197,29 @@ mvn archetype:generate -DgroupId=guillermo -DartifactId=war-deploy -DarchetypeAr
 &lt;/build&gt;
 </code></pre>
 
+<p>
+    Ahora ejecutamos 
+</p>
+<pre><code>mvn tomcat7:deploy</code>
+</pre>
+
+<p>Ya aparecera el myapp en el adminsitrador GUI de tomcat desplegada.</p>
 
 
 
+<h2>Tasca 2</h2>
 
+<p>Ahora realiza el mismo procedimiento para deplegar una otra aplicacion</p>
+<p>Clonamos el repositorio:</p>
+<pre><code>git clone https://github.com/cameronmcnz/rock-paper-scissors.git</code></pre>
+
+<p>Situamos dentro de la carpeta</p>
+<pre><code>cd rock-paper-scissors</code></pre>
+
+<p>y cambiamos la branca</p>
+<pre><code>git checkout patch-1</code></pre>
+
+<hr>
   <!-- Footer -->
   <footer class="bg-primary text-white">
     <div class="container p-4">
