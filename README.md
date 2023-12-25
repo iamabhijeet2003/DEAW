@@ -26,7 +26,9 @@ DAW (Despliegue de Aplicaciones Web)
 
 ### [2.3 | Proxy Inverso con Nginx.](./Temario/Tema2-2.3.html)
 
-### [2.4 | Balance de Carga con Proxy Inversi.](./Temario/Tema2-2.4.html)
+### [2.4 | Balance de Carga con Proxy Inverso.](./Temario/Tema2-2.4.html)
+
+### [2.5 | Balance de Carga con Proxy Inverso y Cifrage SSL.](./Temario/Tema2-2.5.html)
 
 * * *
 
