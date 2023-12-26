@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pratica 3.3 </title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../Assets/favicon.ico">
+</head>
+<body class="container">
+  <nav class="mt-1">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="./Tema1.html">Tema 1</a>
+        </li>
+        
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tema 2
+            </a>
+            <ul class="dropdown-menu">
+                
+              <li><a class="dropdown-item" href="./Tema2.html">Tema 2</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="./Tema2-2.1.html">Practica 2.1</a></li>
+              <li><a class="dropdown-item" href="./Tema2-2.2.html">Practica 2.2</a></li>
+              <li><a class="dropdown-item" href="./Tema2-2.3.html">Practica 2.3</a></li>
+              <li><a class="dropdown-item" href="./Tema2-2.4.html">Practica 2.4</a></li>
+              <li><a class="dropdown-item" href="./Tema2-2.5.html">Practica 2.5</a></li>
+            </ul>
+        </li>
+
+         
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tema 3
+            </a>
+            <ul class="dropdown-menu">
+                
+              <li><a class="dropdown-item" href="./Tema3.html">Tema 3</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="./Tema3-3.1.html">Practica 3.1</a></li>
+              <li><a class="dropdown-item" href="./Tema3-3.3.html">Practica 3.2</a></li>
+            </ul>
+        </li>
+    </ul>
+
+
+</nav>
+ 
+<!--Body Content starts here-->
+<h1>Tema 3</h1>
+<h2>Despliegue de una aplicación clusterizada con Node Express</h2>
+
+<h3>Primero sin Cluster</h3>
+
+<ul>
+  <li>creamos una aplicación de prueba, por ejemplo <code>pruebaSinCluster.js</code>:</li>
+</ul>
+<pre><code>
+const express = require("express");
+const app = express();
+const port = 3000;
+app.get("/", (req, res) =&gt; {
+    res.send("Hello World!");
+});
+app.get("/api/:n", function (req, res) {
+    let n = parseInt(req.params.n);
+    let count = 0;
+
+    if (n &gt; 5000000000) n = 5000000000;
+
+    for (let i = 0; i &lt;= n; i++) {
+        count += i;
+    }
+
+    res.send(`Final count is ${count}`);
+});
+
+app.listen(port, () =&gt; {
+    console.log(`App listening on port ${port}`);
+});
+</code></pre>
+
+<ul>
+  <li>Creamos un directorio para este proyecto.</li>
+  <li>Ejecutamos dentro del directorio:</li>
+</ul>
+<pre><code>
+npm init
+</code></pre>
+
+<ul>
+  <li>Instalamos Express:</li>
+</ul>
+<pre><code>
+npm install express
+</code></pre>
+
+<p>Iniciamos la aplicación:</p>
+<pre><code>
+node pruebaSinCluster.js
+</code></pre>
+
+<p>Para comprobar accedemos a <code>http://IP-maq-virtual:3000</code></p>
+
+<p>Ahora comprobamos con 2 valores diferentes en 2 pestañas de navegador abiertas:</p>
+<ul>
+  <li>Primero con n=50: <code>http://IP-maq-virtual:3000/50</code></li>
+  <li>Después con n=50000000: <code>http://IP-maq-virtual:3000/50000000</code></li>
+</ul>
+
+<p>Podemos comprobar que con el n=5000000 tarda mucho más, porque la aplicación no está clusterizada.</p>
+
+
+<h2>Con cluster</h2>
+
+<ul>
+  <li>creamos otra aplicación, por ejemplo <code>pruebaConCluster.js</code>:</li>
+</ul>
+<pre><code>
+const express = require("express");
+const port = 3000;
+const cluster = require("cluster");
+const totalCPUs = require("os").cpus().length;
+
+if (cluster.isMaster) {
+    console.log(`Number of CPUs is ${totalCPUs}`);
+    console.log(`Master ${process.pid} is running`);
+
+    // Fork workers.
+    for (let i = 0; i &lt; totalCPUs; i++) {
+        cluster.fork();
+    }
+
+    cluster.on("exit", (worker, code, signal) =&gt; {
+        console.log(`worker ${worker.process.pid} died`);
+        console.log("Let's fork another worker!");
+        cluster.fork();
+    });
+} else {
+    const app = express();
+    console.log(`Worker ${process.pid} started`);
+
+    app.get("/", (req, res) =&gt; {
+        res.send("Hello World!");
+    });
+
+    app.get("/api/:n", function (req, res) {
+        let n = parseInt(req.params.n);
+        let count = 0;
+
+        if (n &gt; 5000000000) n = 5000000000;
+
+        for (let i = 0; i &lt;= n; i++) {
+            count += i;
+        }
+
+        res.send(`Final count is ${count}`);
+    });
+
+    app.listen(port, () =&gt; {
+        console.log(`App listening on port ${port}`);
+    });
+}
+</code></pre>
+
+<p>Ahora hacemos el mismo procedimiento que la aplicación sin cluster y comprobamos la velocidad de carga de esta aplicación Clusterizada.</p>
+
+
+<h2>Métricas de rendimiento</h2>
+
+<p>Instalamos <code>loadtest</code> que nos permite simular una gran cantidad de conexiones simultáneas a nuestra API para que podamos medir su rendimiento.</p>
+
+<pre><code>
+npm install -g loadtest
+</code></pre>
+
+<p>Mientras ejecutamos la aplicación, en otro terminal realizamos la siguiente prueba de carga:</p>
+
+<pre><code>
+loadtest http://localhost:3000/api/500000 -n 1000 -c 100
+</code></pre>
+
+<p>El comando anterior enviará 1000 solicitudes a la URL dada, de las cuales 100 son concurrentes.</p>
+
+<p>Ahora detenemos la aplicación sin clusters y ejecutamos:</p>
+
+<pre><code>
+node nombre_aplicacio_cluster.js 
+</code></pre>
+
+<p>Ejecutaremos exactamente las mismas pruebas con el objetivo de realizar una comparación.</p>
+
+
+
+<!--Body content ends here-->
+<hr>
+  <!-- Footer -->
+  <footer class="bg-primary text-white">
+    <div class="container p-4">
+        <!-- Your content inside the footer -->
+    </div>
+
+    <div class="text-center p-3 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2)">
+        <span>© 2023 Copyright Abhijeet Singh</span>
+        <a class="text-white" href="https://github.com/iamabhijeet2003">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+            </svg>
+        </a>
+    </div>
+</footer>
+
+<!-- Footer -->
+</body>
+</html>
