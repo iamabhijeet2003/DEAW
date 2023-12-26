@@ -37,7 +37,9 @@ DAW (Despliegue de Aplicaciones Web)
 
 ### [3.1 | Instalación de Tomcat y Maven para el despliegue de aplicaciones java.](./Temario/Tema3-3.1.html)
 
-### [3.1 | Despliegue de aplicaciones con Node Express.](./Temario/Tema3-3.2.html)
+### [3.2 | Despliegue de aplicaciones con Node Express.](./Temario/Tema3-3.2.html)
+
+### [3.3 | Despliegue de una aplicación clusterizada con Node Express.](./Temario/Tema3-3.3.html)
 
 * * *
 
