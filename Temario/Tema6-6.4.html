@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 6 - Contenedores</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../Assets/favicon.ico">
+</head>
+<body class="container">
+    <nav class="mt-1">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+            <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./Tema1.html">Tema 1</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 2
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema2.html">Tema 2</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.1.html">Practica 2.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.2.html">Practica 2.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.3.html">Practica 2.3</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.4.html">Practica 2.4</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.5.html">Practica 2.5</a></li>
+                </ul>
+            </li>
+
+             
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 3
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="#">Tema 3</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.1.html">Practica 3.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.2.html">Practica 3.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.3.html">Practica 3.3</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 5
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema5.html">Tema 5</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.4.html">Uso basico</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.5.html">Uso avanzado</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.6.html">Ramas</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.7.html">Github</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.8.html">Citar proyectos en Github</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.9.html">Git Flow</a></li>
+                
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 6
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema6.html">Tema 6</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema6-6.2.html">Instalación</a></li>
+                  <li><a class="dropdown-item" href="./Tema6-6.3.html">Images</a></li>
+                  <li><a class="dropdown-item" href="./Tema6-6.4.html">Contenedores</a></li>
+                  
+                
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+<!--content-->
+<h1 id="contenedores">Contenedores</h1>
+<p>Los contenedores son instancias de las imágenes que hemos creado o hemos descargado que se ejecutan de forma aislada.</p>
+<h2 id="listado">Listado</h2>
+<p>La orden para ver el listado de contenedores del sistema es <code>docker container ls</code> o la forma abreviada <code>docker ps</code>. Si lo ejecutamos nos dará un listado vacío porque no hay ningún contenedor activo.</p>
+<p>Probemos con el parámetro <code>--all</code> o <code>-a</code>.</p>
+<pre><code class="language-console">$ docker container ls -a
+CONTAINER ID  IMAGE        COMMAND     CREATED         STATUS      PORTS  NAMES
+4bd76e08b07f  wordpress    &quot;docker-…&quot;  11 minutes ago  Exited (0)         peaceful_murdock
+69a3c34c224d  hello-world  &quot;/hello&quot;    18 minutes ago  Exited (0)         blissful_goldwasser
+</code></pre>
+<p>Estos contenedores están parados y se pueden volver a ejecutar, con el mismo estado que tuviera el sistema de archivos cuando se detuvieron.</p>
+<h2 id="ejecutar-comandos-dentro-de-un-contenedor">Ejecutar comandos dentro de un contenedor</h2>
+<p>Ya hemos usado <code>docker run</code> para crear e iniciar un contenedor. También podemos usar este comando para ejecutar programas que estén dentro del contenedor. Por ejemplo:</p>
+<pre><code>docker run --name ubuntu_bash --rm -i -t ubuntu bash
+</code></pre>
+<p>!!! info
+    Las primeras versiones de <em>Docker</em> eran más limitadas, respecto a la creación de objetos. Así que salió con comandos como <code>docker start</code>, <code>docker stop</code>, etc. relacionados con los contenedores. Cuando surgieron más objetos no había consistencia entre los comandos de otros objetos (como <code>docker volumes ls</code>) y los de los contenedores.</p>
+<pre><code>Así que se ha creado una jerarquía nueva de subcomandos bajo el comando `container` que son equivalentes y se mantienen por compatibilidad:
+
+| Antiguo | Nuevo |
+|--|--|
+| `docker run` | `docker container run` |
+| `docker start` | `docker container start` |
+| `docker stop` | `docker container stop` |
+| `docker rm` | `docker container rm` |
+| `docker inspect` | `docker container inspect` |
+| `docker exec` | `docker container exec` |
+
+No hay más diferencia entre ellos que el nombre.
+</code></pre>
+<p>Pero esta forma de ejecutar cosas, crea un nuevo contenedor. Si queremos ejecutar un comando en un contenedor que ya esté iniciado, debemos usar <code>docker container exec</code>.</p>
+<p>Ejecuta lo siguiente en otro terminal (no cierres el anterior).</p>
+<pre><code class="language-sh">docker exec -w /tmp ubuntu_bash touch my_file.sh
+</code></pre>
+<p>El parámetro <code>-w</code> indica el directorio de trabajo, después indicamos el contenedor donde queremos ejecutar el comando (<code>ubuntu_bash</code>) y por último el comando a ejecutar (<code>touch my_file.sh</code>).</p>
+<p>Si en el primer terminal ejecutamos un listado del directorio tmp:</p>
+<pre><code class="language-sh"># ls /tmp
+my_file.sh
+</code></pre>
+<p>Vemos como podemos modificar un contenedor ya iniciado con <code>docker container exec</code>.</p>
+<p>Pulsa <code>Control+C</code> en el primer terminal para cerrar y borrar el contenedor.</p>
+<h2 id="iniciar-un-contenedor">Iniciar un contenedor</h2>
+<p>Con <code>docker container start</code> podemos iniciar un contenedor parado:</p>
+<pre><code class="language-console">$ docker container start peaceful_murdock 
+peaceful_murdock
+$ docker ps
+CONTAINER ID  IMAGE      COMMAND    CREATED         STATUS  PORTS                 NAMES
+4bd76e08b07f  wordpress  &quot;docker…&quot;  14 minutes ago  Up      0.0.0.0:8080-&gt;80/tcp  peaceful_murdock
+</code></pre>
+<p>Veremos que la web de instalación de <em>WordPress</em> está de nuevo disponible. Solo que ahora el contenedor se ejecuta en segundo plano y no lo podemos detener como antes.</p>
+<h2 id="detener-un-contenedor">Detener un contenedor</h2>
+<p>Con <code>docker container stop</code> podemos detener un contenedor iniciado, indicando su id o su nombre</p>
+<pre><code class="language-console">$ docker container stop 4bd76e08b07f
+4bd76e08b07f
+</code></pre>
+<p>!!! tip
+    Podemos hacer referencia a los contenedores por su ID o por su nombre.</p>
+<h2 id="borrar-un-contenedor">Borrar un contenedor</h2>
+<p>Un contenedor detenido ocupa espacio. Si hemos dejado de necesitar un contenedor podemos borrarlo con <code>docker container rm</code>. Igualmente hay que indicar id o nombre.</p>
+<pre><code class="language-console">$ docker container rm 4bd76e08b07f
+4bd76e08b07f
+</code></pre>
+<p>!!! danger
+    Hay que tener cuidado al borrar contenedores. Cuando un contenedor se borra se elimina cualquier información que contenga y no esté almacenada en algún lugar externo al propio contenedor.</p>
+
+<!--content-->
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="container p-4">
+            <!-- Your content inside the footer -->
+        </div>
+
+        <div class="text-center p-3 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2)">
+            <span>© 2023 Copyright Abhijeet Singh</span>
+            <a class="text-white" href="https://github.com/iamabhijeet2003">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Footer -->
+</body>
+</html>
