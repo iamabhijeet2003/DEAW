@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 5 - Git basico</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../Assets/favicon.ico">
+</head>
+<body class="container">
+    <nav class="mt-1">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+            <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./Tema1.html">Tema 1</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 2
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema2.html">Tema 2</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.1.html">Practica 2.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.2.html">Practica 2.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.3.html">Practica 2.3</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.4.html">Practica 2.4</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.5.html">Practica 2.5</a></li>
+                </ul>
+            </li>
+
+             
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 3
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="#">Tema 3</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.1.html">Practica 3.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.2.html">Practica 3.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.3.html">Practica 3.3</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 5
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema5.html">Tema 5</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.4.html">5.4 - Git Basico</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.2.html">Practica 2.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.3.html">Practica 2.3</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.4.html">Practica 2.4</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.5.html">Practica 2.5</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+<!--content-->
+<h1 id="uso-básico-de-git">Uso básico de Git</h1>
+<h2 id="crear-un-proyecto">Crear un proyecto</h2>
+<h3 id="crear-un-programa-hola-mundo">Crear un programa &quot;Hola Mundo&quot;</h3>
+<p>Creamos un directorio donde colocar el código</p>
+<pre><code>$ mkdir curso-de-git
+$ cd curso-de-git
+</code></pre>
+<p>Creamos un fichero <code>hola.php</code> que muestre Hola Mundo.</p>
+<pre><code class="language-php">&lt;?php
+echo &quot;Hola Mundo\n&quot;;
+</code></pre>
+<h3 id="crear-el-repositorio">Crear el repositorio</h3>
+<p>Para crear un nuevo repositorio se usa la orden <code>git init</code></p>
+<pre><code>$ git init
+Initialized empty Git repository in /home/cc0gobas/git/curso-de-git/.git/
+</code></pre>
+<h3 id="añadir-la-aplicación">Añadir la aplicación</h3>
+<p>Vamos a almacenar el archivo que hemos creado en el repositorio para poder trabajar, después explicaremos para qué sirve cada orden.</p>
+<pre><code>$ git add hola.php
+$ git commit -m &quot;Creación del proyecto&quot;
+[master (root-commit) e19f2c1] Creación del proyecto
+ 1 file changed, 2 insertions(+)
+ create mode 100644 hola.php
+</code></pre>
+<h3 id="comprobar-el-estado-del-repositorio">Comprobar el estado del repositorio</h3>
+<p>Con la orden <code>git status</code> podemos ver en qué estado se encuentran los archivos de nuestro repositorio.</p>
+<pre><code>$ git status
+# On branch master
+nothing to commit (working directory clean)
+</code></pre>
+<p>Si modificamos el archivo <code>hola.php</code>:</p>
+<pre><code class="language-php">&lt;?php
+@print &quot;Hola {$argv[1]}\n&quot;;
+</code></pre>
+<p>Y volvemos a comprobar el estado del repositorio:</p>
+<pre><code>$ git status
+# On branch master
+# Changes not staged for commit:
+#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+#
+#   modified:   hola.php
+#
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+<h3 id="añadir-cambios">Añadir cambios</h3>
+<p>Con la orden <code>git add</code> indicamos a git que prepare los cambios para que sean almacenados.</p>
+<pre><code>$ git add hola.php
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+#
+#   modified:   hola.php
+#
+</code></pre>
+<h3 id="confirmar-los-cambios">Confirmar los cambios</h3>
+<p>Con la orden <code>git commit</code> confirmamos los cambios definitivamente, lo que hace que se guarden permanentemente en nuestro repositorio.</p>
+<pre><code>$ git commit -m &quot;Parametrización del programa&quot;
+[master efc252e] Parametrización del programa
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+</code></pre>
+<h3 id="diferencias-entre-workdir-y-staging">Diferencias entre <em>workdir</em> y <em>staging</em>.</h3>
+<p>Modificamos nuestra aplicación para que soporte un parámetro por defecto y añadimos los cambios.</p>
+<pre><code class="language-php">&lt;?php
+$nombre = isset($argv[1]) ? $argv[1] : &quot;Mundo&quot;;
+@print &quot;Hola, {$nombre}\n&quot;;
+</code></pre>
+<p>Este vez añadimos los cambios a la fase de <em>staging</em> pero sin confirmarlos (<em>commit</em>).</p>
+<pre><code>git add hola.php
+</code></pre>
+<p>Volvemos a modificar el programa para indicar con un comentario lo que hemos hecho.</p>
+<pre><code class="language-php">&lt;?php
+// El nombre por defecto es Mundo
+$nombre = isset($argv[1]) ? $argv[1] : &quot;Mundo&quot;;
+@print &quot;Hola, {$nombre}\n&quot;;
+</code></pre>
+<p>Y vemos el estado en el que está el repositorio</p>
+<pre><code>$ git status
+# On branch master
+# Changes to be committed:
+#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+#
+#   modified:   hola.php
+#
+# Changes not staged for commit:
+#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+#
+#   modified:   hola.php
+#
+</code></pre>
+<p>Podemos ver como aparecen el archivo <em>hola.php</em> dos veces. El primero está preparado
+para ser confirmado y está almacenado en la zona de <em>staging</em>. El segundo indica
+que el directorio hola.php está modificado otra vez en la zona de trabajo (<em>workdir</em>).</p>
+<p>!!! warning</p>
+<pre><code>Si volvieramos a hacer un `git add hola.php` sobreescribiríamos los cambios previos
+que había en la zona de _staging_.
+</code></pre>
+<p>Almacenamos los cambios por separado:</p>
+<pre><code>$ git commit -m &quot;Se añade un parámetro por defecto&quot;
+[master 3283e0d] Se añade un parámetro por defecto
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+$ git status
+# On branch master
+# Changes not staged for commit:
+#   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+#   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+#
+#   modified:   hola.php
+#
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+$ git add .
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+#
+#   modified:   hola.php
+#
+$ git commit -m &quot;Se añade un comentario al cambio del valor por defecto&quot;
+[master fd4da94] Se añade un comentario al cambio del valor por defecto
+ 1 file changed, 1 insertion(+)
+</code></pre>
+<p>!!! info</p>
+<pre><code>El valor &quot;.&quot; despues de `git add` indica que se añadan todos los archivos de forma recursiva.
+</code></pre>
+<p>!!! warning</p>
+<pre><code>Cuidado cuando uses `git add .` asegúrate de que no estás añadiendo archivos que no quieres añadir.
+</code></pre>
+<h3 id="ignorando-archivos">Ignorando archivos</h3>
+<p>La orden <code>git add .</code> o <code>git add nombre_directorio</code> es muy cómoda, ya que nos permite añadir todos los archivos del proyecto o todos los contenidos en un directorio y sus subdirectorios. Es mucho más rápido que tener que ir añadiéndolos uno por uno. El problema es que, si no se tiene cuidado, se puede terminar por añadir archivos innecesarios o con información sensible.</p>
+<p>Por lo general se debe evitar añadir archivos que se hayan generado como producto de la compilación del proyecto, los que generen los entornos de desarrollo (archivos de configuración y temporales) y aquellos que contentan información sensible, como contraseñas o tokens de autenticación. Por ejemplo, en un proyecto de <code>C/C++</code>, los archivos objeto no deben incluirse, solo los que contengan código fuente y los make que los generen.</p>
+<p>Para indicarle a <em>git</em> que debe ignorar un archivo, se puede crear un fichero llamado <em>.gitignore</em>, bien en la raíz del proyecto o en los subdirectorios que queramos. Dicho fichero puede contener patrones, uno en cada línea, que especiquen qué archivos deben ignorarse. El formato es el siguiente:</p>
+<pre><code># .gitignore
+dir1/           # ignora todo lo que contenga el directorio dir1
+!dir1/info.txt  # El operador ! excluye del ignore a dir1/info.txt (sí se guardaría)
+dir2/*.txt      # ignora todos los archivos txt que hay en el directorio dir2
+dir3/**/*.txt   # ignora todos los archivos txt que hay en el dir3 y sus subdirectorios
+*.o             # ignora todos los archivos con extensión .o en todos los directorios
+</code></pre>
+<p>Cada tipo de proyecto genera sus ficheros temporales, así que para cada proyecto hay un <code>.gitignore</code> apropiado. Existen repositorios que ya tienen creadas plantillas. Podéis encontrar uno en <a href="https://github.com/github/gitignore">https://github.com/github/gitignore</a></p>
+<h3 id="ignorando-archivos-globalmente">Ignorando archivos globalmente</h3>
+<p>Si bien, los archivos que hemos metido en <code>.gitignore</code>, deben ser aquellos ficheros temporales o de configuración que se pueden crear durante las fases de compilación o ejecución del programa, en ocasiones habrá otros ficheros que tampoco debemos introducir en el repositorio y que son recurrentes en todos los proyectos. En dicho caso, es más útil tener un <em>gitignore</em> que sea global a todos nuestros proyectos. Esta configuración sería complementaria a la que ya tenemos. Ejemplos de lo que se puede ignorar de forma global son los ficheros temporales del sistema operativo (<code>*~</code>, <code>.nfs*</code>) y los que generan los entornos de desarrollo.</p>
+<p>Para indicar a <em>git</em> que queremos tener un fichero de <em>gitignore</em> global, tenemos que configurarlo con la siguiente orden:</p>
+<pre><code>git config --global core.excludesfile $HOME/.gitignore_global
+</code></pre>
+<p>Ahora podemos crear un archivo llamado <code>.gitignore_global</code> en la raíz de nuestra cuenta con este contenido:</p>
+<pre><code># Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it&#39;s better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+*.swp
+
+# IDEs               #
+######################
+.idea
+.settings/
+.classpath
+.project
+</code></pre>
+<h2 id="trabajando-con-el-historial">Trabajando con el historial</h2>
+<h3 id="observando-los-cambios">Observando los cambios</h3>
+<p>Con la orden <code>git log</code> podemos ver todos los cambios que hemos hecho:</p>
+<pre><code>$ git log
+commit fd4da946326fbe8b24e89282ad25a71721bf40f6
+Author: Sergio Gómez &lt;sergio@uco.es&gt;
+Date:   Sun Jun 16 12:51:01 2013 +0200
+
+    Se añade un comentario al cambio del valor por defecto
+
+commit 3283e0d306c8d42d55ffcb64e456f10510df8177
+Author: Sergio Gómez &lt;sergio@uco.es&gt;
+Date:   Sun Jun 16 12:50:00 2013 +0200
+
+    Se añade un parámetro por defecto
+
+commit efc252e11939351505a426a6e1aa5bb7dc1dd7c0
+Author: Sergio Gómez &lt;sergio@uco.es&gt;
+Date:   Sun Jun 16 12:13:26 2013 +0200
+
+    Parametrización del programa
+
+commit e19f2c1701069d9d1159e9ee21acaa1bbc47d264
+Author: Sergio Gómez &lt;sergio@uco.es&gt;
+Date:   Sun Jun 16 11:55:23 2013 +0200
+
+    Creación del proyecto
+</code></pre>
+<p>También es posible ver versiones abreviadas o limitadas, dependiendo de los parámetros:</p>
+<pre><code>$ git log --oneline
+fd4da94 Se añade un comentario al cambio del valor por defecto
+3283e0d Se añade un parámetro por defecto
+efc252e Parametrización del programa
+e19f2c1 Creación del proyecto
+git log --oneline --max-count=2
+git log --oneline --since=&#39;5 minutes ago&#39;
+git log --oneline --until=&#39;5 minutes ago&#39;
+git log --oneline --author=sergio
+git log --oneline --all
+</code></pre>
+<p>Una versión muy útil de <code>git log</code> es la siguiente, pues nos permite ver en que lugares está master y HEAD, entre otras cosas:</p>
+<pre><code>$ git log --pretty=format:&#39;%h %ad | %s%d [%an]&#39; --graph --date=short
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (HEAD, master) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<h3 id="crear-alias">Crear alias</h3>
+<p>Como estas órdenes son demasiado largas, Git nos permite crear alias para crear nuevas órdenes parametrizadas. Para ello podemos configurar nuestro entorno con la orden <code>git config</code> de la siguiente manera:</p>
+<pre><code>git config --global alias.hist &quot;log --pretty=format:&#39;%h %ad | %s%d [%an]&#39; --graph --date=short&quot;
+</code></pre>
+<p>!!! example</p>
+<pre><code>Puedes configurar incluso alias para abreviar comandos. Algunos ejemplos de alias útiles:
+
+    git config --global alias.br branch
+    git config --global alias.co checkout
+    git config --global alias.ci commit
+    git config --global alias.st &quot;status -u&quot;
+    git config --global alias.cane &quot;commit --amend --no-edit&quot;
+</code></pre>
+<h3 id="recuperando-versiones-anteriores">Recuperando versiones anteriores</h3>
+<p>Cada cambio es etiquetado por un hash, para poder regresar a ese momento del estado del proyecto se usa la orden <code>git checkout</code>.</p>
+<pre><code>$ git checkout e19f2c1
+Note: checking out &#39;e19f2c1&#39;.
+
+You are in &#39;detached HEAD&#39; state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b new_branch_name
+
+HEAD is now at e19f2c1... Creación del proyecto
+$ cat hola.php
+&lt;?php
+echo &quot;Hello, World\n&quot;;
+</code></pre>
+<p>El aviso que nos sale nos indica que estamos en un estado donde no trabajamos en ninguna rama concreta. Eso significa que los cambios que hagamos podrían &quot;perderse&quot; porque si no son guardados en una nueva rama, en principio no podríamos volver a recuperarlos. Hay que pensar que Git es como un árbol donde un nodo tiene información de su nodo padre, no de sus nodos hijos, con lo que siempre necesitaríamos información de dónde se encuentran los nodos finales o de otra manera no podríamos acceder a ellos.</p>
+<h3 id="volver-a-la-última-versión-de-la-rama-master">Volver a la última versión de la rama master.</h3>
+<p>Usamos <code>git checkout</code> indicando el nombre de la rama:</p>
+<pre><code>$ git checkout master
+Previous HEAD position was e19f2c1... Creación del proyecto
+</code></pre>
+<h3 id="etiquetando-versiones">Etiquetando versiones</h3>
+<p>Para poder recuperar versiones concretas en la historia del repositorio, podemos etiquetarlas, lo cual es más facil que usar un hash. Para eso usaremos la orden <code>git tag</code>.</p>
+<pre><code>$ git tag v1
+</code></pre>
+<p>Ahora vamos a etiquetar la versión inmediatamente anterior como v1-beta. Para ello podemos usar los modificadores <code>^</code> o <code>~</code> que nos llevarán a un ancestro determinado. Las siguientes dos órdenes son equivalentes:</p>
+<pre><code>$ git checkout v1^
+$ git checkout v1~1
+$ git tag v1-beta
+</code></pre>
+<p>Si ejecutamos la orden sin parámetros nos mostrará todas las etiquetas existentes.</p>
+<pre><code>$ git tag
+v1
+v1-beta
+</code></pre>
+<p>Y para verlas en el historial:</p>
+<pre><code>$ git hist master --all
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1, master) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (HEAD, tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<h3 id="borrar-etiquetas">Borrar etiquetas</h3>
+<p>Para borrar etiquetas:</p>
+<pre><code>git tag -d nombre_etiqueta
+</code></pre>
+<h3 id="visualizar-cambios">Visualizar cambios</h3>
+<p>Para ver los cambios que se han realizado en el código usamos la orden <code>git diff</code>. La orden sin especificar nada más, mostrará los cambios que no han sido añadidos aún, es decir, todos los cambios que se han hecho antes de usar la orden <code>git add</code>. Después se puede indicar un parámetro y dará los cambios entre la versión indicada y el estado actual. O para comparar dos versiones entre sí, se indica la más antigua y la más nueva. Ejemplo:</p>
+<pre><code>$ git diff v1-beta v1
+diff --git a/hola.php b/hola.php
+index a31e01f..25a35c0 100644
+--- a/hola.php
++++ b/hola.php
+@@ -1,3 +1,4 @@
+ &lt;?php
++// El nombre por defecto es Mundo
+ $nombre = isset($argv[1]) ? $argv[1] : &quot;Mundo&quot;;
+ @print &quot;Hola, {$nombre}\n&quot;;
+</code></pre>
+<!--content-->
+    <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="container p-4">
+            <!-- Your content inside the footer -->
+        </div>
+
+        <div class="text-center p-3 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2)">
+            <span>© 2023 Copyright Abhijeet Singh</span>
+            <a class="text-white" href="https://github.com/iamabhijeet2003">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Footer -->
+</body>
+</html>
