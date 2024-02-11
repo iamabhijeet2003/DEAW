@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 5 | Git Flow</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../Assets/favicon.ico">
+</head>
+<body class="container">
+    <nav class="mt-1">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+            <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./Tema1.html">Tema 1</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 2
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema2.html">Tema 2</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.1.html">Practica 2.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.2.html">Practica 2.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.3.html">Practica 2.3</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.4.html">Practica 2.4</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.5.html">Practica 2.5</a></li>
+                </ul>
+            </li>
+
+             
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 3
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="#">Tema 3</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.1.html">Practica 3.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.2.html">Practica 3.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.3.html">Practica 3.3</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 5
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema5.html">Tema 5</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.4.html">Uso basico</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.5.html">Uso avanzado</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.6.html">Ramas</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.7.html">Github</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.8.html">Citar proyectos en Github</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.9.html">Git Flow</a></li>
+                
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+<!--content-->
+<h1 id="flujo-de-trabajo-con-git-git-flow">Flujo de trabajo con Git (git flow)</h1>
+<h2 id="la-importancia-de-la-organización-del-flujo-de-trabajo">La importancia de la organización del flujo de trabajo</h2>
+<p>En la introducción vimos los diferentes esquemas de organización externa de los repositorios (es decir, en lo relativo a los usuarios que componen el equipo de trabajo). </p>
+<p>Pero el repositorio en sí también tiene su esquema de organización.</p>
+<p>En los ejemplos hemos visto que usabamos una rama máster y creábamos ramas para añadir funcionalidades que luego integrábamos. Es un forma de trabajar de las muchas que hay propuestas, posiblemente la más simple, pero tiene el inconveniente de dejar la rama máster a expensas de una mala actualización y quedarnos sin una rama estable. Por eso, hay otras propuestas mejores que permiten separar el trabajo de desarrollo con el mantenimiento de las versiones estables. Una de las más conocidas es la propuesta por <a href="http://nvie.com/posts/a-successful-git-branching-model/">Vincent Driessen</a> y que podemos ver en la figura siguiente.</p>
+<p><img src="img/gitlab-organizacion.png" alt="Git flow"></p>
+<h3 id="las-ramas-principales">Las ramas principales</h3>
+<p>En este esquema hay dos ramas principales con un tiempo de vida indefinido:</p>
+<ul>
+<li>master (<em>origin/master</em>): el código apuntado por <em>HEAD</em> siempre contiene un estado listo para producción.</li>
+<li>develop (<em>origin/develop</em>): el código apuntado por <em>HEAD</em> siempre contiene los últimos cambios desarrollados para la próxima versión del software. También se le puede llamar <em>rama de integración</em>. No es necesariamente estable.</li>
+</ul>
+<p>Cuando el código de la rama de desarrollo es lo suficientemente estable, se integra con la rama master y una nueva versión es lanzada.</p>
+<h3 id="las-ramas-auxiliares">Las ramas auxiliares</h3>
+<p>Para labores concretas, pueden usarse otro tipo de ramas, las cuales tienen un tiempo de vida definido. Es decir, cuando ya no son necesarias se eliminan:</p>
+<ul>
+<li>Ramas de funcionalidad (feature branches)</li>
+<li>Ramas de versión (release branches)</li>
+<li>Ramas de parches (hotfix branches)</li>
+</ul>
+<h4 id="feature-branches">Feature branches</h4>
+<ul>
+<li>Pueden partir de: develop</li>
+<li>Deben fusionarse con: develop</li>
+<li>Convenición de nombres: feature-NUMissue-*.</li>
+</ul>
+<h4 id="release-branches">Release branches</h4>
+<ul>
+<li>Pueden partir de: develop</li>
+<li>Deben fusionarse con: develop y master</li>
+<li>Convenición de nombres: release-*</li>
+</ul>
+<h4 id="hotfix-branches">Hotfix branches</h4>
+<ul>
+<li>Pueden partir de: master</li>
+<li>Deben fusionarse con: develop y master</li>
+<li>Convenición de nombres: hotfix-*</li>
+</ul>
+<h2 id="la-extensión-flow-de-git">La extensión flow de Git</h2>
+<p>Una de las ventajas de Git es que, además, es extensible. Es decir, se pueden crear nuevas órdenes como si de plugins se tratara. Una de las más usadas es <a href="https://github.com/nvie/gitflow">gitflow</a>, que está basada en el artículo que hablamos al principio de este capítulo.</p>
+<h3 id="instalación">Instalación</h3>
+<p>Aunque la fuente original de la extensión es del mismo autor del artículo, el código no se encuentra ya muy actualizado y hay un fork bastante más activo en <a href="https://github.com/petervanderdoes/gitflow">petervanderdoes/gitflow</a>. En el wiki del repositorio están las <a href="https://github.com/petervanderdoes/gitflow/wiki">instrucciones de instalación</a> para distintos sistemas. Una vez instalados tendremos una nueva órden: <code>git flow</code>.</p>
+<h3 id="uso">Uso</h3>
+<p>Para cambiar a las ramas master y develop, seguiremos usando <code>git checkout</code>, pero para trabajar con las ramas antes indicadas gitflow nos facilita las siguientes órdenes:</p>
+<h4 id="--git-flow-init">- git flow init:</h4>
+<p>Inicializa el espacio de trabajo. De forma automática, crea las ramas que necesitamos y permite configurar el nombre de las mismas.</p>
+<pre><code>$ git flow init
+Initialized empty Git repository in ~/project/.git/
+No branches exist yet. Base branches must be created now.
+Branch name for production releases: [master]
+Branch name for &quot;next release&quot; development: [develop]
+
+How to name your supporting branch prefixes?
+Feature branches? [feature/]
+Release branches? [release/]
+Hotfix branches? [hotfix/]
+Support branches? [support/]
+Version tag prefix? []
+
+$ git branch
+* develop
+ master
+</code></pre>
+<p>Podemos ver que por defecto (usando intro en vez de escribir nada) pone nombres por defecto a cada rama. Con <code>git branch</code> comprobamos que ramas existen y en cual nos encontramos.</p>
+<h4 id="--git-flow-feature">- git flow feature:</h4>
+<p>Permite crear y trabajar con ramas de funcionalidades.</p>
+<pre><code>$ git flow feature start feature_branch
+</code></pre>
+<p>Así creamos una rama &#39;feature/feature_branch&#39; y nos mueve automáticamente a ella.
+En esta haremos los cambios que queramos en nuestro repositorio. Cuando queramos acabar de usar la rama, haremos un commit y la finalizaremos:</p>
+<pre><code>$ git flow feature stop feature_branch
+</code></pre>
+<p>Esto finaliza nuestra rama y la integra automáticamente a la rama develop. Si queremos seguir cambiando nuestro repositorio abriremos una nueva rama feature.</p>
+<h4 id="--git-flow-release">- git flow release:</h4>
+<p>Permite crear y trabajar con ramas de versiones.
+Cuando entendemos que despues de todas las funcionalidades (features, cambios en nuestro repositorio) nuestro trabajo esta listo para ser publicado, abriremos una rama release, que nacera de nuestra rama develop. </p>
+<pre><code>$ git flow release start 0.1.0
+Switched to a new branch &#39;release/0.1.0&#39;
+</code></pre>
+<p>Usaremos un tag para identificar de que release se trata.
+Ahora podemos hacer los cambios que estimemos oportuno para integrar todas las features que el repositorio ha sufrido hasta el momento. Tras hacer commit a todo el proceso, podemos cerrar la rama release.</p>
+<pre><code>$git flow release finish &#39;0.1.0&#39;
+</code></pre>
+<p>Esto la integrará de forma automática con master (con esto finalizamos el proceso de &#39;subir a producción&#39; nuestro codigo) y con la rama develop, para que las futuras features estén al día.</p>
+<h4 id="--git-flow-hotfix">- git flow hotfix:</h4>
+<p>Permite crear y trabajar con ramas de parches. Esto lo usaremos para hacer cambios rapidos que no puedan esperar a la proxima integracion de una release.</p>
+<pre><code>$ git flow hotfix start hotfix_branch
+</code></pre>
+<p>Tras hacer commit finalizamos la rama hotfix. Esta se fusionará con nuestra rama master y con nuestra rama develop para que esta también esté al día de los últimos cambios.</p>
+<pre><code>$ git flow hotfix finish hotfix_branch
+</code></pre>
+
+<!--content-->
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="container p-4">
+            <!-- Your content inside the footer -->
+        </div>
+
+        <div class="text-center p-3 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2)">
+            <span>© 2023 Copyright Abhijeet Singh</span>
+            <a class="text-white" href="https://github.com/iamabhijeet2003">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Footer -->
+</body>
+</html>
