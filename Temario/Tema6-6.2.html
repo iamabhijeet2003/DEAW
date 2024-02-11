@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 6 Instalacion</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../Assets/favicon.ico">
+</head>
+<body class="container">
+    <nav class="mt-1">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+            <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./Tema1.html">Tema 1</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 2
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema2.html">Tema 2</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.1.html">Practica 2.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.2.html">Practica 2.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.3.html">Practica 2.3</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.4.html">Practica 2.4</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.5.html">Practica 2.5</a></li>
+                </ul>
+            </li>
+
+             
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 3
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="#">Tema 3</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.1.html">Practica 3.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.2.html">Practica 3.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.3.html">Practica 3.3</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 5
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema5.html">Tema 5</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.4.html">Uso basico</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.5.html">Uso avanzado</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.6.html">Ramas</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.7.html">Github</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.8.html">Citar proyectos en Github</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.9.html">Git Flow</a></li>
+                
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 6
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema6.html">Tema 6</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema6-6.2.html">Instalación</a></li>
+                  
+                
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+<!--content-->
+<h1 id="instalación">Instalación</h1>
+<p>Existe dos versiones de Docker, una libre y otra que no lo es. Nos ocuparemos exclusivamente de la primera: <a href="https://docs.docker.com/install/">Docker CE (Community Edition)</a>.</p>
+<h2 id="disponibilidad">Disponibilidad</h2>
+<p>Docker CE está disponible para los siguientes sistemas GNU/Linux: CentOS, Debian, Fedora y Ubuntu. No todas están en múltiples arquitecturas, pero sí todas soportan <em>x86_64/amd64</em>. Si tienes otra arquitectura u otro sistema es mejor que uses una máquina virtual para arrancar una distribución compatible.</p>
+<p>Para más información sobre sistemas privativos soportados, leer la sección de <a href="https://docs.docker.com/install/#supported-platforms">plataformas soportadas</a> de la documentación oficial.</p>
+<h2 id="instalación-1">Instalación</h2>
+<p>Debido a que, dependiendo de la distribución, la forma de instalarlo difiere, es mejor consultar la documentación oficial para saber como instalar Docker en tu máquina.</p>
+<ul>
+<li>Ubuntu: <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">https://docs.docker.com/install/linux/docker-ce/ubuntu/</a></li>
+<li>Debian: <a href="https://docs.docker.com/install/linux/docker-ce/debian/">https://docs.docker.com/install/linux/docker-ce/debian/</a></li>
+<li>CentOS: <a href="https://docs.docker.com/install/linux/docker-ce/centos/">https://docs.docker.com/install/linux/docker-ce/centos/</a></li>
+<li>Fedora: <a href="https://docs.docker.com/install/linux/docker-ce/fedora/">https://docs.docker.com/install/linux/docker-ce/fedora/</a></li>
+</ul>
+<p>Si quieres instalar y probar Linux por primera vez, te recomendamos que uses una <a href="https://www.ubuntu.com/download/desktop">versión LTS de Ubuntu</a>, por ser fácil de instalar y tener un ciclo de mantenimiento de seguridad ampliado. Obviamente necesitas tener conexión a Internet para instalar y probar Docker.</p>
+<p>Para saber si tienes Docker bien instalado, los tutoriales oficiales siempre te indican inicies un contenedor de ejemplo. Esto es lo que sucede:</p>
+<p>!!! example
+    Los códigos de ejemplo irán acompañados de una caja como esta para poder copiar y pegar los comandos.</p>
+<pre><code>```sh
+sudo docker run hello-world
+```
+</code></pre>
+<p>El resultado es el siguiente:</p>
+<pre><code class="language-sh">$ sudo docker run hello-world
+Unable to find image &#39;hello-world:latest&#39; locally
+latest: Pulling from library/hello-world
+d1725b59e92d: Pull complete 
+Digest: sha256:0add3ace90ecb4adbf7777e9aacf18357296e799f81cabc9fde470971e499788
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+1. The Docker client contacted the Docker daemon.
+2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+    (amd64)
+3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+$ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+https://hub.docker.com/
+
+For more examples and ideas, visit:
+https://docs.docker.com/get-started/
+</code></pre>
+<p>En la línea 1 estamos ejecutando el cliente de Docker, y estamos indicando que queremos ejecutar un contenedor a partir de la imagen <a href="https://hub.docker.com/_/hello-world/">hello-world</a> del registro público de Docker.</p>
+<p>Si es la primera vez que hemos ejecutado esa imagen, nos aparecerá la línea 2, que indica que la imagen no puede ser encontrada y va a proceder a buscarla, por defecto, en el registro público. Si tenemos conexión a Internet se descargará la imagen  (línea 6) y automáticamente creará un contenedor.</p>
+<p>Tanto si se ha descargado la imagen o ya estaba descargada, el contenedor se ejecutará, obteniendo el texto de bienvenida que se ve en el cuadro anterior.</p>
+<h2 id="configuración-del-usuario">Configuración del usuario</h2>
+<p>Si estamos usando <em>Docker</em> en nuestro ordenador personal, podemos configurar nuestro usuario para usar el cliente sin tener que poner <em>sudo</em> delante. Para ello ejecuta lo siguiente:</p>
+<p>!!! example
+    Añade tu usuario al grupo de docker.</p>
+<pre><code>    sudo usermod -aG docker $USER
+</code></pre>
+<p>Para que los nuevos permisos surtan efecto, debes cerrar y volver a abrir la sesión. Para problemas relacionados con los permisos visitad <a href="https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user">la página del manual oficial</a>.</p>
+<h2 id="requisitos-del-curso">Requisitos del curso</h2>
+<h3 id="imágenes">Imágenes</h3>
+<p>Es necesario traer ya instaladas ciertas imágenes de contenedores. Ejecuta los siguientes comandos en tu equipo (si te da error de permisos asegúrate que has hecho el apartado anterior y abierto y cerrado la sesión).</p>
+<p>!!! example
+    Instalar <em>WordPress</em>:</p>
+<pre><code>    docker pull wordpress:latest
+</code></pre>
+<p>!!! example
+    Instalar <em>MariaDB</em>:</p>
+<pre><code>    docker pull mariadb:latest
+</code></pre>
+<h3 id="herramientas">Herramientas</h3>
+<p>También es necesario traer una herramienta llamada <code>Docker Compose</code>. Puedes instalarla con las instrucciones que hay en la página de <a href="https://docs.docker.com/compose/install/">Instalación de Docker Compose</a>.</p>
+<p>Sin embargo, si usas <em>Ubuntu</em> o <em>Debian</em> puedes instalarlo de forma más fácil con <em>apt</em>:</p>
+<p>!!! example
+    Instalación de <em>Docker Compose</em>:</p>
+<pre><code>    sudo apt install docker-compose
+</code></pre>
+
+<!--content-->
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="container p-4">
+            <!-- Your content inside the footer -->
+        </div>
+
+        <div class="text-center p-3 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2)">
+            <span>© 2023 Copyright Abhijeet Singh</span>
+            <a class="text-white" href="https://github.com/iamabhijeet2003">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Footer -->
+</body>
+</html>
