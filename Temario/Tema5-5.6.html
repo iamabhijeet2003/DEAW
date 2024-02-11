@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 3</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../Assets/favicon.ico">
+</head>
+<body class="container">
+    <nav class="mt-1">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+            <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./Tema1.html">Tema 1</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 2
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema2.html">Tema 2</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.1.html">Practica 2.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.2.html">Practica 2.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.3.html">Practica 2.3</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.4.html">Practica 2.4</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.5.html">Practica 2.5</a></li>
+                </ul>
+            </li>
+
+             
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 3
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="#">Tema 3</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.1.html">Practica 3.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.2.html">Practica 3.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.3.html">Practica 3.3</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 5
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema5.html">Tema 5</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.4.html">Uso basico</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.5.html">Uso avanzado</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.6.html">Ramas</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+<!--content-->
+<h1 id="ramas">Ramas</h1>
+<h2 id="administración-de-ramas">Administración de ramas</h2>
+<h3 id="crear-una-nueva-rama">Crear una nueva rama</h3>
+<p>Cuando vamos a trabajar en una nueva funcionalidad, es conveniente hacerlo en una nueva rama, para no modificar la rama principal y dejarla inestable. Aunque la orden para manejar ramas es <code>git branch</code> podemos usar también <code>git checkout</code>.</p>
+<p>Vamos a crear una nueva rama:</p>
+<pre><code>git branch hola
+</code></pre>
+<p>!!! info</p>
+<pre><code>Si usamos `git branch` sin ningún argumento, nos devolverá la lista de ramas
+disponibles.
+</code></pre>
+<p>La orden anterior no devuelve ningún resultado y tampoco nos cambia de rama, para eso
+debemos usar <em>checkout</em>:</p>
+<pre><code>$ git checkout hola
+Switched to branch &#39;hola&#39;
+</code></pre>
+<p>!!! tip</p>
+<pre><code>Hay una forma más rapida de hacer ambas acciones en un solo paso. Con el parámetro
+`-b` de `git checkout` podemos cambiarnos a una rama que, si no existe, se crea
+instantáneamente.
+
+    $ git checkout -b hola
+    Switched to a new branch &#39;hola&#39;
+</code></pre>
+<h3 id="modificaciones-en-la-rama-secundaria">Modificaciones en la rama secundaria</h3>
+<p>Añadimos un nuevo archivo en el directorio <code>lib</code> llamado <code>HolaMundo.php</code>:</p>
+<pre><code class="language-php">&lt;?php
+
+class HolaMundo
+{
+   private $nombre;
+
+   function __construct($nombre)
+   {
+      $this-&gt;nombre = $nombre;
+   }
+
+   function __toString()
+   {
+      return sprintf (&quot;Hola, %s.\n&quot;, $this-&gt;nombre);
+   }
+}
+</code></pre>
+<p>Y modificamos <code>hola.php</code>:</p>
+<pre><code class="language-php">&lt;?php
+// Autor: Sergio Gómez &lt;sergio@uco.es&gt;
+// El nombre por defecto es Mundo
+require(&#39;HolaMundo.php&#39;);
+
+$nombre = isset($argv[1]) ? $argv[1] : &quot;Mundo&quot;;
+print new HolaMundo($nombre);
+</code></pre>
+<p>Podríamos confirmar los cambios todos de golpe, pero lo haremos de uno en uno, con su comentario.</p>
+<pre><code>$ git add lib/HolaMundo.php
+$ git commit -m &quot;Añadida la clase HolaMundo&quot;
+[hola 6932156] Añadida la clase HolaMundo
+ 1 file changed, 16 insertions(+)
+ create mode 100644 lib/HolaMundo.php
+$ git add lib/hola.php
+$ git commit -m &quot;hola usa la clase HolaMundo&quot;
+[hola 9862f33] hola usa la clase HolaMundo
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+</code></pre>
+<p>Y ahora con la orden <code>git checkout</code> podemos movernos entre ramas:</p>
+<pre><code>$ git checkout master
+Switched to branch &#39;master&#39;
+$ git checkout hola
+Switched to branch &#39;hola&#39;
+</code></pre>
+<h3 id="modificaciones-en-la-rama-master">Modificaciones en la rama master</h3>
+<p>Podemos volver y añadir un nuevo archivo a la rama principal:</p>
+<pre><code>$ git checkout master
+Switched to branch &#39;master&#39;
+</code></pre>
+<p>Creamos un archivo llamado <code>README.md</code> en la raíz de nuestro proyecto con el siguiente contenido:</p>
+<pre><code class="language-md"># Curso de GIT
+
+Este proyecto contiene el curso de introducción a GIT
+</code></pre>
+<p>Y lo añadimos a nuestro repositorio en la rama en la que estamos:</p>
+<pre><code>$ git add README.md
+$ git commit -m &quot;Añadido README.md&quot;
+[master c3e65d0] Añadido README.md
+ 1 file changed, 3 insertions(+)
+ create mode 100644 README.md
+$ git hist --all
+* c3e65d0 2013-06-16 | Añadido README.md (HEAD, master) [Sergio Gómez]
+| * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
+| * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+|/
+* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<p>Y vemos como <code>git hist</code> muestra la bifurcación en nuestro código.</p>
+<h2 id="fusión-de-ramas-y-resolución-de-conflictos">Fusión de ramas y resolución de conflictos</h2>
+<h3 id="mezclar-ramas">Mezclar ramas</h3>
+<p>Podemos incorporar los cambios de una rama a otra con la orden <code>git merge</code></p>
+<pre><code>$ git checkout hola
+Switched to branch &#39;hola&#39;
+$ git merge master
+Merge made by the &#39;recursive&#39; strategy.
+ README.md | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 README.md
+$ git hist --all
+*   9c6ac06 2013-06-16 | Merge commit &#39;c3e65d0&#39; into hola (HEAD, hola) [Sergio Gómez]
+|\
+* | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
+* | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+| |
+| * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
+|/
+* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<p>De esa forma se puede trabajar en una rama secundaria incorporando los cambios de la rama principal o de otra rama.</p>
+<h3 id="resolver-conflictos">Resolver conflictos</h3>
+<p>Un conflicto es cuando se produce una fusión que Git no es capaz de resolver. Vamos a modificar la rama master para crear uno con la rama hola.</p>
+<pre><code>$ git checkout master
+Switched to branch &#39;master&#39;
+</code></pre>
+<p>Modificamos nuestro archivo <em>hola.php</em> de nuevo:</p>
+<pre><code class="language-php">&lt;?php
+// Autor: Sergio Gómez &lt;sergio@uco.es&gt;
+print &quot;Introduce tu nombre:&quot;;
+$nombre = trim(fgets(STDIN));
+@print &quot;Hola, {$nombre}\n&quot;;
+</code></pre>
+<p>Y guardamos los cambios:</p>
+<pre><code>$ git add lib/hola.php
+$ git commit -m &quot;Programa interactivo&quot;
+[master 9c85275] Programa interactivo
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+$ git hist --all
+*   9c6ac06 2013-06-16 | Merge commit &#39;c3e65d0&#39; into hola (hola) [Sergio Gómez]
+|\
+* | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
+* | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+| | * 9c85275 2013-06-16 | Programa interactivo (HEAD, master) [Sergio Gómez]
+| |/
+| * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
+|/
+* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<p>Volvemos a la rama hola y fusionamos:</p>
+<pre><code>$ git checkout hola
+Switched to branch &#39;hola&#39;
+$ git merge master
+Auto-merging lib/hola.php
+CONFLICT (content): Merge conflict in lib/hola.php
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>Si editamos nuestro archivo <code>lib/hola.php</code> obtendremos algo similar a esto:</p>
+<pre><code class="language-php">&lt;?php
+// Autor: Sergio Gómez &lt;sergio@uco.es&gt;
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+// El nombre por defecto es Mundo
+require(&#39;HolaMundo.php&#39;);
+
+$nombre = isset($argv[1]) ? $argv[1] : &quot;Mundo&quot;;
+print new HolaMundo($nombre);
+=======
+print &quot;Introduce tu nombre:&quot;;
+$nombre = trim(fgets(STDIN));
+@print &quot;Hola, {$nombre}\n&quot;;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+</code></pre>
+<p>La primera parte marca el código que estaba en la rama donde trabajábamos (HEAD) y la parte final el código de donde fusionábamos. Resolvemos el conflicto, dejando el archivo como sigue:</p>
+<pre><code class="language-php">&lt;?php
+// Autor: Sergio Gómez &lt;sergio@uco.es&gt;
+require(&#39;HolaMundo.php&#39;);
+
+print &quot;Introduce tu nombre:&quot;;
+$nombre = trim(fgets(STDIN));
+print new HolaMundo($nombre);
+</code></pre>
+<p>Y resolvemos el conflicto confirmando los cambios:</p>
+<pre><code>$ git add lib/hola.php
+$ git commit -m &quot;Solucionado el conflicto al fusionar con la rama master&quot;
+[hola a36af04] Solucionado el conflicto al fusionar con la rama master
+</code></pre>
+<h3 id="rebasing-vs-merging">Rebasing vs Merging</h3>
+<p>Rebasing es otra técnica para fusionar distinta a merge y usa la orden <code>git rebase</code>. Vamos a dejar nuestro proyecto como estaba antes del fusionado. Para ello necesitamos anotar el hash anterior al de la acción de <em>merge</em>. El que tiene la anotación <em>&quot;hola usa la clase HolaMundo&quot;</em>.</p>
+<p>Para ello podemos usar la orden <code>git reset</code> que nos permite mover HEAD donde queramos.</p>
+<pre><code>$ git checkout hola
+Switched to branch &#39;hola&#39;
+$ git hist
+*   a36af04 2013-06-16 | Solucionado el conflicto al fusionar con la rama master (HEAD, hola) [Sergio Gómez]
+|\
+| * 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+* |   9c6ac06 2013-06-16 | Merge commit &#39;c3e65d0&#39; into hola [Sergio Gómez]
+|\ \
+| |/
+| * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
+* | 9862f33 2013-06-16 | hola usa la clase HolaMundo [Sergio Gómez]
+* | 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+|/
+* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+$ git reset --hard 9862f33
+HEAD is now at 9862f33 hola usa la clase HolaMundo
+</code></pre>
+<p>Y nuestro estado será:</p>
+<pre><code>$ git hist --all
+* 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD, hola) [Sergio Gómez]
+* 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+| * 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+| * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
+|/
+* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<p>Hemos desecho todos los <em>merge</em> y nuestro árbol está <em>&quot;limpio&quot;</em>. Vamos a probar ahora a hacer un rebase. Continuamos en la rama <code>hola</code> y ejecutamos lo siguiente:</p>
+<pre><code>$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: Añadida la clase HolaMundo
+Applying: hola usa la clase HolaMundo
+Using index info to reconstruct a base tree...
+M	lib/hola.php
+Falling back to patching base and 3-way merge...
+Auto-merging lib/hola.php
+CONFLICT (content): Merge conflict in lib/hola.php
+error: Failed to merge in the changes.
+Patch failed at 0002 hola usa la clase HolaMundo
+The copy of the patch that failed is found in: .git/rebase-apply/patch
+
+When you have resolved this problem, run &quot;git rebase --continue&quot;.
+If you prefer to skip this patch, run &quot;git rebase --skip&quot; instead.
+To check out the original branch and stop rebasing, run &quot;git rebase --abort&quot;.
+</code></pre>
+<p>El conflicto, por supuesto, se sigue dando. Resolvemos guardando el archivo <code>hola.php</code> como en los casos anteriores:</p>
+<pre><code class="language-php">&lt;?php
+// Autor: Sergio Gómez &lt;sergio@uco.es&gt;
+require(&#39;HolaMundo.php&#39;);
+
+print &quot;Introduce tu nombre:&quot;;
+$nombre = trim(fgets(STDIN));
+print new HolaMundo($nombre);
+</code></pre>
+<p>Añadimos los cambios en <em>staging</em> y en esta ocasión, y tal como nos indicaba en el mensaje anterior, no tenemos que hacer <code>git commit</code> sino continuar con el <em>rebase</em>:</p>
+<pre><code>$ git add lib/hola.php
+$ git status
+rebase in progress; onto 269eaca
+You are currently rebasing branch &#39;hola&#39; on &#39;269eaca&#39;.
+  (all conflicts fixed: run &quot;git rebase --continue&quot;)
+
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+    modified:   lib/hola.php
+$ git rebase --continue
+Applying: hola usa la clase HolaMundo
+</code></pre>
+<p>Y ahora vemos que nuestro árbol tiene un aspecto distinto, mucho más limpio:</p>
+<pre><code>$ git hist --all
+* 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -&gt; hola) [Sergio Gómez]
+* 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+* 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+* c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<p>Lo que hace rebase es volver a aplicar todos los cambios a la rama máster, desde su nodo más reciente. Eso significa que se modifica el orden o la historia de creación de los cambios. Por eso rebase no debe usarse si el orden es importante o si la rama es compartida.</p>
+<h2 id="mezclando-con-la-rama-master">Mezclando con la rama master</h2>
+<p>Ya hemos terminado de implementar los cambios en nuestra rama secundaria y es hora de llevar los cambios a la rama principal. Usamos <code>git merge</code> para hacer una fusión normal:</p>
+<pre><code>$ git checkout master
+Switched to branch &#39;master&#39;
+$ git merge hola
+Updating c3e65d0..491f1d2
+Fast-forward
+ lib/HolaMundo.php | 16 ++++++++++++++++
+ lib/hola.php      |  4 +++-
+ 2 files changed, 19 insertions(+), 1 deletion(-)
+ create mode 100644 lib/HolaMundo.php
+ $ git hist --all
+ * 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -&gt; master, hola) [Sergio Gómez]
+ * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+ * 9c85275 2013-06-16 | Programa interactivo [Sergio Gómez]
+ * c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
+ * 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+ * 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+ * fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+ * 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+ * efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+ * e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<p>Vemos que indica que el tipo de fusión es <em>fast-forward</em>. Este tipo de fusión tiene el problema que no deja rastro de la fusión, por eso suele ser recomendable usar el parámetro <code>--no-ff</code> para que quede constancia siempre de que se ha fusionado una rama con otra.</p>
+<p>Vamos a volver a probar ahora sin hacer <em>fast-forward</em>. Reseteamos <em>master</em> al estado <em>&quot;Programa interactivo&quot;</em>.</p>
+<pre><code>$ git reset --hard 9c85275
+$ git hist --all
+* 9862f33 2013-06-16 | hola usa la clase HolaMundo (HEAD -&gt; hola) [Sergio Gómez]
+* 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+* 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+* c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<p>Vemos que estamos como en el final de la sección anterior, así que ahora mezclamos:</p>
+<pre><code>$ git merge -m &quot;Aplicando los cambios de la rama hola&quot; --no-ff hola
+Merge made by the &#39;recursive&#39; strategy.
+ lib/HolaMundo.php | 16 ++++++++++++++++
+ lib/hola.php      |  4 +++-
+ 2 files changed, 19 insertions(+), 1 deletion(-)
+ create mode 100644 lib/HolaMundo.php
+$ git hist --all
+*   2eab8ca 2013-06-16 | Aplicando los cambios de la rama hola (HEAD -&gt; master) [Sergio Gomez]
+*\
+| * 9862f33 2013-06-16 | hola usa la clase HolaMundo (hola) [Sergio Gómez]
+| * 6932156 2013-06-16 | Añadida la clase HolaMundo [Sergio Gómez]
+|/
+* 9c85275 2013-06-16 | Programa interactivo (master) [Sergio Gómez]
+* c3e65d0 2013-06-16 | Añadido README.md [Sergio Gómez]
+* 81c6e93 2013-06-16 | Movido hola.php a lib [Sergio Gómez]
+* 96a39df 2013-06-16 | Añadido el autor del programa y su email [Sergio Gómez]
+* fd4da94 2013-06-16 | Se añade un comentario al cambio del valor por defecto (tag: v1) [Sergio Gómez]
+* 3283e0d 2013-06-16 | Se añade un parámetro por defecto (tag: v1-beta) [Sergio Gómez]
+* efc252e 2013-06-16 | Parametrización del programa [Sergio Gómez]
+* e19f2c1 2013-06-16 | Creación del proyecto [Sergio Gómez]
+</code></pre>
+<p>En la siguiente imagen se puede ver la diferencia:</p>
+<p><img src="img/gitlab-merge-ff.png" alt="Diferencias entre tipos de fusión"></p>
+
+<!--content-->
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="container p-4">
+            <!-- Your content inside the footer -->
+        </div>
+
+        <div class="text-center p-3 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2)">
+            <span>© 2023 Copyright Abhijeet Singh</span>
+            <a class="text-white" href="https://github.com/iamabhijeet2003">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Footer -->
+</body>
+</html>
