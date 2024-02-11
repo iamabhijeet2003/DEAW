@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 6 - wordpress</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../Assets/favicon.ico">
+</head>
+<body class="container">
+    <nav class="mt-1">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+            <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./Tema1.html">Tema 1</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 2
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema2.html">Tema 2</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.1.html">Practica 2.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.2.html">Practica 2.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.3.html">Practica 2.3</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.4.html">Practica 2.4</a></li>
+                  <li><a class="dropdown-item" href="./Tema2-2.5.html">Practica 2.5</a></li>
+                </ul>
+            </li>
+
+             
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 3
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="#">Tema 3</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.1.html">Practica 3.1</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.2.html">Practica 3.2</a></li>
+                  <li><a class="dropdown-item" href="./Tema3-3.3.html">Practica 3.3</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 5
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema5.html">Tema 5</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.4.html">Uso basico</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.5.html">Uso avanzado</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.6.html">Ramas</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.7.html">Github</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.8.html">Citar proyectos en Github</a></li>
+                  <li><a class="dropdown-item" href="./Tema5-5.9.html">Git Flow</a></li>
+                
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tema 6
+                </a>
+                <ul class="dropdown-menu">
+                    
+                  <li><a class="dropdown-item" href="./Tema6.html">Tema 6</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="./Tema6-6.2.html">Instalación</a></li>
+                  <li><a class="dropdown-item" href="./Tema6-6.3.html">Images</a></li>
+                  <li><a class="dropdown-item" href="./Tema6-6.4.html">Contenedores</a></li>
+                  <li><a class="dropdown-item" href="./Tema6-6.5.html">Volumenes</a></li>
+                  <li><a class="dropdown-item" href="./Tema6-6.6.html">Wordpress Con Docker</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+<!--content-->
+<h1 id="levantar-un-wordpress-con-docker">Levantar un WordPress con Docker</h1>
+<p>Para crear un <em>blog</em> con <em>WordPress</em> necesitamos tener una base de datos dónde almacenar las entradas. Así que empezaremos creándola y después crearemos el contenedor de nuestro <em>blog</em>.</p>
+<h2 id="crear-un-contenedor-con-mariadb">Crear un contenedor con <em>MariaDB</em>.</h2>
+<p><em>WordPress</em> soporta los motores relaciones <em>MySQL</em> y <em>MariaDB</em>. Usaremos este último.</p>
+<p>!!! example
+    Vamos a crear nuestra base de datos usando este volumen.</p>
+<pre><code>```sh
+docker run -d --name wordpress-db \
+    --mount source=wordpress-db,target=/var/lib/mysql \
+    -e MYSQL_ROOT_PASSWORD=secret \
+    -e MYSQL_DATABASE=wordpress \
+    -e MYSQL_USER=manager \
+    -e MYSQL_PASSWORD=secret mariadb:10.3.9
+```
+</code></pre>
+<p>La imagen se descargará, si no lo estaba ya, y se iniciará nuestro contenedor de <em>MariaDB</em>:</p>
+<pre><code class="language-console">$ docker run -d --name wordpress-db \
+    --mount source=wordpress-db,target=/var/lib/mysql \
+    -e MYSQL_ROOT_PASSWORD=secret \
+    -e MYSQL_DATABASE=wordpress \
+    -e MYSQL_USER=manager \
+    -e MYSQL_PASSWORD=secret mariadb:10.3.9
+Unable to find image &#39;mariadb:10.3.9&#39; locally
+10.3.9: Pulling from library/mariadb
+124c757242f8: Pull complete 
+9d866f8bde2a: Pull complete 
+fa3f2f277e67: Pull complete 
+398d32b153e8: Pull complete 
+afde35469481: Pull complete 
+31f2ae82b3e3: Pull complete 
+3eeaf7e45ea6: Pull complete 
+716982328e17: Pull complete 
+34ce605c9036: Pull complete 
+4502ed9073c0: Pull complete 
+2afafbdf5a96: Pull complete 
+43d52b11dd31: Pull complete 
+30c7b70556f3: Pull complete 
+8b1b39f2f89a: Pull complete 
+41480b9319d7: Pull complete 
+Digest: sha256:b7894bd08e5752acdd41fea654cb89467c99e67b8293975bb5d787b27e66ce1a
+Status: Downloaded newer image for mariadb:10.3.9
+30634831d17108aa553a5774e27f398760bdbdf32debc3179843e73aa5957956
+
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+30634831d171        mariadb:10.3.9      &quot;docker-entrypoint.s…&quot;   20 seconds ago      Up 16 seconds       3306/tcp            wordpress-db
+</code></pre>
+<p>El principal cambio en <code>docker run</code> con respecto a la última vez es que no hemos usado
+<code>-p</code> (el parámetro para publicar puertos) y hemos añadido el parámetro <code>-d</code>.</p>
+<p>Lo primero que habremos notado es que el contenedor ya no se queda en primer plano. El parámetro <code>-d</code> indica que debe ejecutarse como un proceso en segundo plano. Así no podremos pararlo por accidente con <code>Control+C</code>.</p>
+<p>Lo segundo es que vemos que el contenedor usa un puerto, el <code>3306/tcp</code>, pero no está linkado a la máquina anfitrión. No tenemos forma de acceder a la base de datos directamente. Nuestra intención es que solo el contenedor de <em>WordPress</em> pueda acceder.</p>
+<p>Luego una serie de parámetros <code>-e</code> que nos permite configurar nuestra base de datos.</p>
+<p>!!! info
+    Los contenedores se configuran a través de variables de ambiente, que podemos configurar con el parámetro <code>-e</code> que vemos en la orden anterior. Gracias a ellos hemos creado una base de datos, un usuario y configurado las contraseñas.</p>
+<pre><code>Se recomienda buscar en el registro de _Docker_ la imagen oficial de [MariaDB](https://hub.docker.com/_/mariadb/) para entender el uso de los parámetros.
+</code></pre>
+<p>Por último, el parámetro <code>--mount</code> nos permite enlazar el volumen que creamos en el paso anterior con el directorio <code>/var/lib/mysql</code> del contenedor. Ese directorio es donde se guardan los datos de <em>MariaDB</em>. Eso significa que si borramos el contenedor, o actualizamos el contenedor a una nueva versión, no perderemos los datos porque ya no se encuentran en él, si no en el volumen. Solo lo perderíamos si borramos explícitamente el volumen.</p>
+<p>!!! warning
+    Cada contendor que usemos tendrá uno o varios directorios donde se deben guardar los datos no volátiles. Nos corresponde a nosotros conocer la herramienta y saber de qué directorios se tratan. Usualmente están en la documentación del contenedor, pero no siempre.</p>
+<p>!!! info
+    El parámetro <code>--mount</code> se empezó a utilizar desde la versión <code>17.06</code> para contenedores independientes (los que no pertenecen a un enjambre o <em>swarm</em>). Los que conozcan <em>Docker</em> de versiones más antiguas estarán más acostumbrados a usar el parámetro <code>--volume</code> que hace algo similar. Sin embargo la documentación aconseja usar ya <code>--mount</code>, sobre todo para nuevos usuarios.</p>
+<pre><code>Nosotros somos muy obedientes así que en este taller usaremos `--mount`.
+</code></pre>
+<h2 id="creando-nuestro-blog">Creando nuestro blog</h2>
+<p>Vamos a crear otra vez nuestro contenedor de <em>WordPress</em>, pero esta vez vamos a conectarlo con nuestra base de datos. Además, queremos poder editar los ficheros de las plantillas, por si tenemos que modificar algo, así que necesitaremos montar el directorio del contenedor donde está instalado <em>WordPress</em> con nuestra cuenta de usuario en la máquina anfitrión.</p>
+<p>!!! example
+    Vamos a crear el espacio de trabajo:</p>
+<pre><code>```sh
+mkdir -p ~/Sites/wordpress/target &amp;&amp; cd ~/Sites/wordpress
+```
+</code></pre>
+<p>!!! example
+    Y dentro de este directorio arrancamos el contenedor:</p>
+<pre><code>```sh
+docker run -d --name wordpress \
+    --link wordpress-db:mysql \
+    --mount type=bind,source=&quot;$(pwd)&quot;/target,target=/var/www/html \
+    -e WORDPRESS_DB_USER=manager \
+    -e WORDPRESS_DB_PASSWORD=secret \
+    -p 8080:80 \
+    wordpress:4.9.8
+```
+</code></pre>
+<p>Cuando termine la ejecución, si accedemos a la dirección <a href="http://localhost:8080/">http://localhost:8080/</a>, ahora sí podremos acabar el proceso de instalación de nuestro WordPress. Si listamos el directorio target comprobaremos que tenemos todos los archivos de instalación accesibles desde el directorio anfitrión.</p>
+<p>!!! note
+    Ejercicios:</p>
+<pre><code>1. Para los contenedores, tanto el de _WordPress_ como el _MariaDB_.
+2. Borra ambos.
+3. Vuelve a crearlos y mira como ya no es necesario volver a instalar _WordPress_.
+4. Vuelve a borrarlos y borra también el volumen.
+5. Vuelve a crear el volumen y los contenedores y comprueba que ahora sí hay que volver a instalar _WordPress_.
+</code></pre>
+
+<!--content-->
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white">
+        <div class="container p-4">
+            <!-- Your content inside the footer -->
+        </div>
+
+        <div class="text-center p-3 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2)">
+            <span>© 2023 Copyright Abhijeet Singh</span>
+            <a class="text-white" href="https://github.com/iamabhijeet2003">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Footer -->
+</body>
+</html>
