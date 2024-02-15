@@ -5,8 +5,9 @@
 *   [Tema 2](./Temario/Tema2.html)
 *   [Tema 3](./Temario/Tema3.html)
 *   [Tema 5](./Temario/Tema5.html)
-*   [Tema 5](./Temario/Tema6.html)
-  
+*   [Tema 6](./Temario/Tema6.html)
+*   [Tema 7](./Temario/Tema7.html)
+
 DAW (Despliegue de Aplicaciones Web)
 ====================================
 
